@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<!--
+Calendar on flex
+-->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Calendar on flex</title>        
+        <style>
+            
+            /* FLEX STYLES */
+            .week, .head, .header, .headstyle
+            {
+              display: flex;
+            }
+            
+            .day 
+            {
+              flex-grow: 1;
+              flex-shrink: 1;
+              flex-basis: 0;
+            }
+          
+            /* OTHER STYLES */
+
+            html, body
+            {             
+              font-size: 12px;
+              min-width: 800px;  
+            }
+            
+            .month, .button, .input
+            {
+              max-width: 800px; 
+              margin: 20px auto;
+            }
+            
+            .headstyle, .header
+            {
+                width: 800px;
+                max-width: 800px;
+                margin: 30px auto 0;                 
+            }
+            
+            .head  
+            {
+              max-width: 1200px; 
+              margin: 0 auto;
+              background-color: #F3F0F0;
+              box-shadow:0px 3px 4px -1px rgba(0,0,0,0.24);            
+            }
+            
+            .header
+            {
+                margin-top: 20px;
+            }
+            
+            button
+            {
+                padding: 5px 15px;
+                background-color: #006FCA;
+                border: none;
+                color:white;
+                font-weight: bold;
+                cursor:pointer;
+                border-radius: 3px;
+            }
+            
+            .button button:first-of-type
+            {
+                margin-right: 10px;                   
+            }
+            
+            .button button
+            {
+                text-shadow:  2px 2px 2px gray;
+            }
+
+            .week
+            {
+              height: 80px;
+            }
+
+            .day 
+            {
+              color: gray;
+              padding: 5px;             
+              box-shadow: 
+                -1px -1px lightgrey, 
+                inset -1px -1px 0 0 lightgrey;
+            }            
+            .day:hover
+            {
+                background-color: #F1EDED;
+                font-weight: bold;
+            }
+            
+            p
+            {
+                font-weight: bold;
+            }
+            
+            .text p 
+            {
+                line-height: 0.5;
+            }
+            .text:hover
+            {
+                background-color: #C1E4FF;
+                font-weight: 100;
+            }
+            
+             .text
+            {
+                background-color: #C1E4FF;                
+            }
+            
+            input
+            {
+                box-shadow:rgba(0,0,0,0.1) 0.3px 0 inset;  
+                height: 25px;
+            }
+            
+            .arrow-left 
+            {
+                width: 0; 
+                height: 0; 
+                border-top: 4px solid transparent;
+                border-bottom: 4px solid transparent; 
+                border-right: 4px solid blue; 
+                margin-left: 7px;
+            }
+            
+            .arrow-right 
+            {
+                width: 0; 
+                height: 0; 
+                border-top: 4px solid transparent;
+                border-bottom: 4px solid transparent;
+                border-left: 4px solid blue;
+                margin-left: 7px;                
+            }
+            
+            .button
+            {
+                margin-left: 0;                 
+            }
+            
+            .input
+            {
+                margin-right: 0;                
+            }
+            
+            button.left, button.right
+            {
+                background-color: white;
+                border: 1px solid lightgray;
+                width: 20px;
+                height: 20px;
+                padding: 0;
+                margin: 0 5px;
+            }
+            
+            .header span
+            {
+                margin-top: 2px;               
+                font-size: 16px;
+            }
+            button.today
+            {
+                background-color: white;
+                border: 1px solid lightgray;
+                color: gray;
+                padding: 2px 10px;
+                font-weight: 100;
+                border-radius: 3px;
+            }  
+            
+            input
+            {
+                padding: 0 10px;
+            }
+            
+            .input .right
+            {
+                background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA9BJREFUeNrsmsuRozAQQDXU3iEDZiIwG4HZi6/LRmBvBOO7D2YyIANDBOu9+oQzgAzsDHAEXlHV1DBsS0igD/50lWrKY9Oon1qtbuiX6/VKHllengCeAL4C2Gw2ZD6fD9X3k46QjgCGx/hdTkcBf/+aNHixWHz5/E2BTp+OmI6IY3BXQhhrOio69qDjbNoDnJGG7+g40bGSML4rHlxf6/kDeicPYNsyXKVEoHdrCoDsFnDBXUPOb6rWHi/gc3u1m/gQcrwmhu9rIJepAPDB+IAT2FI6sh497aC3BC8KGXEih+9L21vAhdXEjC9gsj8EjO9KBteFoKcrAUDwbQJwYRIew1W/03EcOY8j6IkZQXIP87ACIGWsfO2aH4rn8wF6K8QTUhsAlhCIMNfMNHllBluiQk6Id5MAapdLGCuvLSiBlJAkYVvONQVgjez7ROPKY56QIPEgHhxojkdhAC6yAqcxNx8oMdy3uzCDvACrcVgAsNQ21p2UIHJhQF/p3gIrZPUzYkcyhhfoAUDdxEeOvcRy2d69/6uq5MhhpKBd2VsGsGcUTsxghwU8UQABkuqeLQM4I6lyIBPsxgKYguTINtCyBTwkAHLPUkNSmQIQ8ABYlMIUADJRAJVs0iPirSIAvKEBxraIzNURWPFgIvaEYzxiDABvIgA8HaeTCIBwIgC0BGdHINoGRNPjKAlxkYXQ5gG5TNppSCLBeY4HQI+OUmf1NVCw6rTU5QG1pMg2sHX+zRH3V1acOYyzMxUoSW2Vwkrn4nCqL8wLtoaNf0eif6qyOuVlgjHjfzNDxs8YKx2rvInTU4PHjOg7M2B8zjD+bApALR/IeetphtAYj2V+qt9ECRVDEZJ3NxCWiuezZBhf6cpFRACcCf6qyoOApKKrwwc9KaP2yImmx3Kir8dLBoTGQ+rEZDcARLvNJurxwh2kxLuB90Llvy6xw+HQtz/TnhK56f7KkYytvv6VfDZJyZbaVctDKtAhlRF2u8RkATSFSULU9wd1M71QoBSXhtAFMKRJqn5d9RtufFJs+An0/uJsOSwOubpjACb1A7c38ISxlVkOet7IZ7dJKRj5mzaaQRBUNEpmMHyYcET4XaKN6xbg6ntOhBfN+RsIIZF8gTskBsg8xGA1VYlOUraRueiDoKNVlhcrxr5FKSRPCmlPcMi0JSTyj76kYsLUAVx0Q5g6AO0QbgGAVgi3AkAbhFsCoAXCrQEYC2F9DwDGQDjdC4AhEFKCtPrdMgAZCClUsOTeAIhAYBp/LwB4ELjG3xMADELSZzxaDj+aPAE8OoB/AgwAGPAZm/8Vy4cAAAAASUVORK5CYII=');
+                background-size: cover;
+                border: none;
+                padding: 5px;
+            }
+            
+        </style>
+    </head>
+    <body> 
+        <div class = "head">           
+            <div class = "headstyle">                
+                <div class="button">
+                    <button>Добавить</button>
+                    <button>Обновить</button>
+                 </div>
+                <div class="input"> 
+                    <button class="right"> </button>
+                <input type="text" placeholder="Событие, дата или участник" size="30">
+                </div>    
+            </div>    
+        </div>  
+        <div class ="header">
+           <button class="left"> <div class="arrow-left"></div></button>
+           <span>Март 2013</span>
+           <button class="right"> <div class="arrow-right"></div></button>
+           <button class="today"> Сегодня</button>
+        </div>    
+        <div class="month">
+          <div class="week">
+            <div class="day">Понедельник, 25</div>
+            <div class="day">Вторник, 26</div>
+            <div class="day">Среда, 27</div>
+            <div class="day">Четверг, 28</div>
+            <div class="day">Пятница, 1</div>
+            <div class="day">Суббота, 2</div>
+            <div class="day">Воскресенье, 3</div>
+          </div>
+          <div class="week">
+            <div class="day">4</div>
+            <div class="day">5</div>
+            <div class="day">6</div>
+            <div class="day">7</div>
+            <div class="day">8</div>
+            <div class="day text">9
+                <p>Напиться!</p>
+                <span>Витя Костин, Петр Михайлов</span>
+            </div>
+            <div class="day">10</div>            
+          </div>
+          <div class="week">
+            <div class="day">11</div>              
+            <div class="day">12</div>
+            <div class="day">13</div>
+            <div class="day">14</div>
+            <div class="day">15</div>
+            <div class="day">16</div>
+            <div class="day">17</div>            
+          </div>
+          <div class="week">
+            <div class="day">18</div>
+            <div class="day">19</div>
+            <div class="day">20</div>
+            <div class="day">21</div>
+            <div class="day text">22
+                <p>ДР!</p>
+                <span>Дима Молодцов</span>
+            </div>
+            <div class="day">23</div>
+            <div class="day">24</div>            
+          </div>
+          <div class="week">
+            <div class="day">25</div>
+            <div class="day">26</div>
+            <div class="day">27</div>
+            <div class="day">28</div>
+            <div class="day">29</div>
+            <div class="day">30</div>
+            <div class="day">31</div>
+          </div>
+        </div>
+    </body>
+</html>
