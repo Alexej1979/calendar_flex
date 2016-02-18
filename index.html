@@ -16,7 +16,7 @@ Calendar on flex
               display: flex;
             }
             
-            .day 
+            div.day 
             {
               flex-grow: 1;
               flex-shrink: 1;
@@ -93,7 +93,7 @@ Calendar on flex
             }            
             .day:hover
             {
-                background-color: #F1EDED;
+                background-color: rgba(80, 87, 162, 0.19);
                 font-weight: bold;
             }
             
@@ -108,11 +108,11 @@ Calendar on flex
             }
             .text:hover
             {
-                background-color: #C1E4FF;
+                background-color: rgba(80, 87, 162, 0.19);
                 font-weight: 100;
             }
             
-             .text
+             div.text
             {
                 background-color: #C1E4FF;                
             }
@@ -189,9 +189,26 @@ Calendar on flex
                 background-size: cover;
                 border: none;
                 padding: 5px;
+            } 
+            
+            #textMonthYear
+            {
+                width: 120px;
+                text-align: center;
+            }
+            
+            .color
+            {
+                background-color: #F3F0F0;
+            }
+            
+            .colorWhite
+            {
+               background-color: white; 
             }
             
         </style>
+            
     </head>
     <body> 
         <div class = "head">           
@@ -207,63 +224,232 @@ Calendar on flex
             </div>    
         </div>  
         <div class ="header">
-           <button class="left"> <div class="arrow-left"></div></button>
-           <span>Март 2013</span>
-           <button class="right"> <div class="arrow-right"></div></button>
+           <button id="left" class="left"> <div class="arrow-left"></div></button>
+           <span id="textMonthYear"> </span>
+           <button id="right" class="right"> <div class="arrow-right"></div></button>
            <button class="today"> Сегодня</button>
         </div>    
         <div class="month">
           <div class="week">
-            <div class="day">Понедельник, 25</div>
-            <div class="day">Вторник, 26</div>
-            <div class="day">Среда, 27</div>
-            <div class="day">Четверг, 28</div>
-            <div class="day">Пятница, 1</div>
-            <div class="day">Суббота, 2</div>
-            <div class="day">Воскресенье, 3</div>
-          </div>
-          <div class="week">
-            <div class="day">4</div>
-            <div class="day">5</div>
-            <div class="day">6</div>
-            <div class="day">7</div>
-            <div class="day">8</div>
-            <div class="day text">9
-                <p>Напиться!</p>
-                <span>Витя Костин, Петр Михайлов</span>
+            <div class="day">Понедельник,
+                <span class="thisDay"></span>
             </div>
-            <div class="day">10</div>            
-          </div>
-          <div class="week">
-            <div class="day">11</div>              
-            <div class="day">12</div>
-            <div class="day">13</div>
-            <div class="day">14</div>
-            <div class="day">15</div>
-            <div class="day">16</div>
-            <div class="day">17</div>            
-          </div>
-          <div class="week">
-            <div class="day">18</div>
-            <div class="day">19</div>
-            <div class="day">20</div>
-            <div class="day">21</div>
-            <div class="day text">22
-                <p>ДР!</p>
-                <span>Дима Молодцов</span>
+            <div class="day">Вторник,
+                <span class="thisDay"></span>
             </div>
-            <div class="day">23</div>
-            <div class="day">24</div>            
+            <div class="day">Среда, 
+                <span class="thisDay"></span>
+            </div>
+            <div class="day">Четверг, 
+                <span class="thisDay"></span>
+            </div>
+            <div class="day">Пятница, 
+                <span class="thisDay"></span>
+            </div>
+            <div class="day">Суббота, 
+                <span class="thisDay"></span>
+            </div>
+            <div class="day">Воскресенье, 
+                <span class="thisDay"></span>
+            </div>
           </div>
           <div class="week">
-            <div class="day">25</div>
-            <div class="day">26</div>
-            <div class="day">27</div>
-            <div class="day">28</div>
-            <div class="day">29</div>
-            <div class="day">30</div>
-            <div class="day">31</div>
+            <div class="day">
+                <span class="thisDay"></span>
+            </div>
+            <div class="day">
+                <span class="thisDay"></span>
+            </div>
+            <div class="day">
+                <span class="thisDay"></span>
+            </div>
+            <div class="day">
+                <span class="thisDay"></span>
+            </div>
+            <div class="day">
+                <span class="thisDay"></span>
+            </div>
+            <div class="day text">
+                <span class="thisDay"></span>
+            </div>
+            <div class="day">
+                <span class="thisDay"></span>
+            </div>            
+          </div>
+          <div class="week">
+            <div class="day">
+                <span class="thisDay"></span>
+            </div>              
+            <div class="day">
+                <span class="thisDay"></span>
+            </div> 
+            <div class="day">
+                <span class="thisDay"></span>
+            </div> 
+            <div class="day">
+                <span class="thisDay"></span>
+            </div> 
+            <div class="day">
+                <span class="thisDay"></span>
+            </div> 
+            <div class="day">
+                <span class="thisDay"></span>
+            </div> 
+            <div class="day">
+                <span class="thisDay"></span>
+            </div>            
+          </div>
+          <div class="week">
+             <div class="day">
+                <span class="thisDay"></span>
+            </div>  
+             <div class="day">
+                <span class="thisDay"></span>
+            </div>  
+             <div class="day">
+                <span class="thisDay"></span>
+            </div>  
+             <div class="day">
+                <span class="thisDay"></span>
+            </div>  
+            <div class="day">
+                <span class="thisDay"></span>
+            </div>
+            <div class="day">
+                <span class="thisDay"></span>
+            </div>  
+            <div class="day">
+                <span class="thisDay"></span>
+            </div>              
+          </div>
+          <div class="week">
+            <div class="day">
+                <span class="thisDay"></span>
+            </div>              
+            <div class="day">
+                <span class="thisDay"></span>
+            </div> 
+            <div class="day">
+                <span class="thisDay"></span>
+            </div> 
+            <div class="day">
+                <span class="thisDay"></span>
+            </div> 
+            <div class="day">
+                <span class="thisDay"></span>
+            </div> 
+            <div class="day">
+                <span class="thisDay"></span>
+            </div> 
+            <div class="day">
+                <span class="thisDay"></span>
+            </div>    
           </div>
         </div>
+        
+        <script>  
+            var monthNames = 
+                    [
+                        "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+                        "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+                    ];
+            var date = new Date();     
+            date.setDate(1); 
+            
+            draw();
+             
+            document.getElementsByClassName("today")[0].onclick =  function()
+            {
+               date = new Date(); 
+               date.setDate(1);  
+               draw();                
+            };
+            
+            function draw()
+            {                
+                var firstDay=date.getDay();
+                firstDay--;
+                if (firstDay<0)
+                    firstDay=6;
+                var lastDay = daysInMonth(date.getMonth(),date.getYear());                 
+                document.getElementById("textMonthYear").innerHTML = monthNames[date.getMonth()]+" "+date.getFullYear();
+                console.info(firstDay,lastDay, date.getMonth());
+                
+                var clear = document.getElementsByClassName('thisDay');                
+                               
+                for (i=0;i<clear.length;i++)
+                {
+                    clear[i].innerHTML = "";                    
+                    clear[i].parentElement.className =  clear[i].parentElement.className
+                            .replace( /(?:^|\s)text(?!\S)/g , '' ); 
+                    var clearP = document.getElementsByClassName("p");
+                    var clearSpan = document.getElementsByClassName("span");
+                    while(clearP.length > 0)
+                    {
+                        clearP[0].parentNode.removeChild(clearP[0]);
+                    }
+                    while(clearSpan.length > 0)
+                    {
+                        clearSpan[0].parentNode.removeChild(clearSpan[0]);
+                    }                                                  
+                }
+               
+                
+                for (i=1;i<=lastDay && firstDay+i-1<35 ;i++)
+                {
+                        clear[firstDay+i-1].innerHTML = i; 
+                        clear[firstDay+i-1].parentElement.setAttribute("class", "day colorWhite");                       
+                }
+                
+                for(i=lastDay;(i+firstDay)<35;i++)
+                {      
+                        clear[i+firstDay].innerHTML = i-lastDay+1; 
+                        clear[i+firstDay].parentElement.setAttribute("class", "day color");
+                }                 
+                
+                var lastDay = daysInMonth(date.getMonth()-1,date.getYear()); 
+                for(i=0; i<firstDay ;i++)
+                {      
+                        clear[i].innerHTML = lastDay-firstDay+i+1; 
+                        clear[i].parentElement.setAttribute("class", "day color");                        
+                }  
+                
+                  if(date.getMonth()==1 && date.getFullYear() == 2016)
+                {
+                    clear[21].parentElement.className += " text";
+                    var p = clear[21].parentElement.appendChild(document.createElement("p"));
+                    p.setAttribute("class", "p");      
+                    p.appendChild(document.createTextNode("ДР!"));
+                    var span = clear[21].parentElement.appendChild(document.createElement("span"));
+                    span.setAttribute("class", "span");
+                    span.appendChild(document.createTextNode("Дима Молодцов"));
+                                       
+                    clear[10].parentElement.className += " text";
+                    p = clear[10].parentElement.appendChild(document.createElement("p"));
+                    p.setAttribute("class", "p"); 
+                    p.appendChild(document.createTextNode("Напиться!"));
+                    span = clear[10].parentElement.appendChild(document.createElement("span"));
+                    span.setAttribute("class", "span");
+                    span.appendChild(document.createTextNode("Витя Костин, Петр Михайлов"));                 
+                }
+            }
+            
+            document.getElementById("left").onclick = function()
+            {
+              date.setMonth(date.getMonth()-1);
+              draw();
+            };
+            
+            document.getElementById("right").onclick = function()
+            {
+              date.setMonth(date.getMonth()+1);
+              draw();
+            };                       
+            
+            function daysInMonth(month,year) 
+            {
+                return new Date(year, month+1, 0).getDate();
+            }
+        </script>          
     </body>
 </html>
